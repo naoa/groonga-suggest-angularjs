@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="groonga-suggest">
+  <head>
+    <meta charset="utf-8">
+    <title>Groonga suggest sample with AngularJS</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Groonga suggest sample with AngularJS</h1>
+      <div ng-controller="MainController">
+        <form ng-submit="submit()" name="form">
+          <div class="form-group">
+            <label>Input</label>
+            <input type="text" class="form-control" ng-model="newSuggest.content" ng-change="change()" name="content">
+          </div>
+	  <div class="form-group">
+            <input type="submit" class="btn btn-default" value="Submit">
+          </div>
+          <div>
+          <h2>complete(補完：単語の補完)</h2>
+          <div ng-repeat="complete in completes.complete">
+	    <span ng-if="$index>=2">
+              {{complete}}
+	    </span>
+          </div>
+	  <div>
+	    {{complete_json}}
+          </div>
+          <h2>suggest(提案：２つ目のワード)</h2>
+          <div ng-repeat="suggest in suggests.suggest">
+	    <span ng-if="$index>=2">
+              {{suggest}}
+	    </span>
+          </div>
+          <h2>correction(補正：もしかして)</h2>
+          <div ng-repeat="correction in corrections.correct">
+	    <span ng-if="$index>=2">
+              {{correction}}
+	    </span>
+          </div>
+	</form>
+        </div>
+      </div>
+    </div>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="groonga-suggest.js"></script>
+  </body>
+</html>
